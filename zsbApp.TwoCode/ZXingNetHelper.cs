@@ -34,6 +34,10 @@ namespace zsbApp.TwoCode
             BarcodeReader reader = new BarcodeReader();
             reader.Options.CharacterSet = "UTF-8";
             Result result = reader.Decode(bitmap);
+            if (result == null)
+            {
+                return (null, null);
+            }
             return (null, result.Text);
         }
     }
