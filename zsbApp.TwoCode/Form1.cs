@@ -1,5 +1,5 @@
 ﻿/*
- * 2018年6月19日 21:02:17 郑少宝
+ * 2018年6月19日 21:02:17 郑少宝 
  */
 using System;
 using System.Drawing;
@@ -19,20 +19,22 @@ namespace zsbApp.TwoCode
                 for (int i = 1; i < 41; i++)
                 {
                     this.cmbQRCodeVersion.Items.Add(i);
-                    this.txbQRCodeScale.Items.Add(i);
                 }
                 this.cmbQRCodeErrorCorrect.Items.AddRange(Enum.GetNames(typeof(QRCodeEncoder.ERROR_CORRECTION)));
-                this.helper = new ThoughtWorksQRCodeHelper();
+                this.thHelper = new ThoughtWorksQRCodeHelper();
+                this.zxingHelper = new ZXingNetHelper();
                 this.cmbQRCodeErrorCorrect.SelectedIndex = 0;
                 this.cmbQRCodeVersion.SelectedIndex = 9;
                 this.txbQRCodeScale.Text = "4";
                 this.txbLogoSize.Text = "30";
                 this.initDrag();
                 this.cmbAsm.SelectedIndex = 0;
+                this.txbContent.Text = System.DateTime.Now.ToLongDateString();
             };
         }
 
-        private ThoughtWorksQRCodeHelper helper;
+        private ThoughtWorksQRCodeHelper thHelper;
+        private ZXingNetHelper zxingHelper;
         private Bitmap _bitmap;
         private string _logo;
 
@@ -43,13 +45,29 @@ namespace zsbApp.TwoCode
                 this.showlog("请输入数据");
                 return;
             }
-            int ver = System.Convert.ToInt32(this.cmbQRCodeVersion.SelectedValue);
+            int ver = System.Convert.ToInt32(this.cmbQRCodeVersion.Text);
             int size = System.Convert.ToInt32(this.txbQRCodeScale.Text);
             int logoSize = System.Convert.ToInt32(this.txbLogoSize.Text);
-            QRCodeEncoder.ERROR_CORRECTION error = (QRCodeEncoder.ERROR_CORRECTION)Enum.Parse(typeof(QRCodeEncoder.ERROR_CORRECTION), this.cmbQRCodeErrorCorrect.Text);
-            var result = helper.CreateQRCode(this.txbContent.Text, size, ver, error, this._logo, logoSize);
-            this._bitmap = result.qrcodeBitbmp;
-            this.pictureBox1.Image = result.qrcodeBitbmp;
+
+            (string error, Bitmap qrcodeBitbmp) result;
+            if (this.cmbAsm.SelectedIndex == 0)
+            {
+                result = this.zxingHelper.CreateQRCode(this.txbContent.Text, size, ver, ZXing.QrCode.Internal.ErrorCorrectionLevel.L, this._logo, logoSize);
+            }
+            else
+            {
+                QRCodeEncoder.ERROR_CORRECTION error = (QRCodeEncoder.ERROR_CORRECTION)Enum.Parse(typeof(QRCodeEncoder.ERROR_CORRECTION), this.cmbQRCodeErrorCorrect.Text);
+                result = thHelper.CreateQRCode(this.txbContent.Text, size, ver, error, this._logo, logoSize);
+            }
+            if (string.IsNullOrEmpty(result.error))
+            {
+                this._bitmap = result.qrcodeBitbmp;
+                this.pictureBox1.Image = result.qrcodeBitbmp;
+            }
+            else
+            {
+                this.showlog(result.error);
+            }
         }
 
         private void btnSaveAs_Click(object sender, EventArgs e)
@@ -95,7 +113,7 @@ namespace zsbApp.TwoCode
             }
             else
             {
-                result = this.helper.DecodeQRCode(file);
+                result = this.thHelper.DecodeQRCode(file);
             }
             if (string.IsNullOrEmpty(result.error))
             {
@@ -117,11 +135,11 @@ namespace zsbApp.TwoCode
             (string error, string content) result;
             if (this.cmbAsm.SelectedIndex == 0)
             {
-                result = new ZXingNetHelper().DecodeQRCode(bitmap);
+                result = this.zxingHelper.DecodeQRCode(bitmap);
             }
             else
             {
-                result = this.helper.DecodeQRCode(bitmap);
+                result = this.thHelper.DecodeQRCode(bitmap);
             }
             if (string.IsNullOrEmpty(result.error))
             {

@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tslVer = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslLog = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -52,15 +54,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.cmbAsm = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnPaste = new System.Windows.Forms.Button();
             this.txbCotent2 = new System.Windows.Forms.TextBox();
             this.btnSelectFile = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.cmbAsm = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txbQRCodeScale = new System.Windows.Forms.ComboBox();
-            this.tslVer = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txbQRCodeScale = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -88,6 +90,14 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // tslVer
+            // 
+            this.tslVer.AutoSize = false;
+            this.tslVer.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tslVer.Name = "tslVer";
+            this.tslVer.Size = new System.Drawing.Size(77, 17);
+            this.tslVer.Text = "1.2018.620.1";
+            // 
             // tslLog
             // 
             this.tslLog.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -95,17 +105,27 @@
             this.tslLog.Name = "tslLog";
             this.tslLog.Size = new System.Drawing.Size(0, 17);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cmbAsm);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(889, 32);
+            this.panel1.TabIndex = 3;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(108, 30);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(0, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(889, 562);
-            this.tabControl1.TabIndex = 2;
+            this.tabControl1.Size = new System.Drawing.Size(889, 530);
+            this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
@@ -113,7 +133,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(881, 524);
+            this.tabPage1.Size = new System.Drawing.Size(881, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "生成 QR Code";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -146,14 +166,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(875, 518);
+            this.splitContainer1.Size = new System.Drawing.Size(875, 486);
             this.splitContainer1.SplitterDistance = 339;
             this.splitContainer1.TabIndex = 4;
             // 
             // btnCopy
             // 
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopy.Location = new System.Drawing.Point(109, 236);
+            this.btnCopy.Location = new System.Drawing.Point(109, 222);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(68, 42);
             this.btnCopy.TabIndex = 17;
@@ -163,7 +183,7 @@
             // 
             // txbLogoSize
             // 
-            this.txbLogoSize.Location = new System.Drawing.Point(64, 479);
+            this.txbLogoSize.Location = new System.Drawing.Point(64, 455);
             this.txbLogoSize.Name = "txbLogoSize";
             this.txbLogoSize.Size = new System.Drawing.Size(101, 26);
             this.txbLogoSize.TabIndex = 16;
@@ -171,7 +191,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 482);
+            this.label3.Location = new System.Drawing.Point(18, 458);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 15;
@@ -180,7 +200,7 @@
             // btnSelectLogo
             // 
             this.btnSelectLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectLogo.Location = new System.Drawing.Point(64, 299);
+            this.btnSelectLogo.Location = new System.Drawing.Point(64, 275);
             this.btnSelectLogo.Name = "btnSelectLogo";
             this.btnSelectLogo.Size = new System.Drawing.Size(54, 28);
             this.btnSelectLogo.TabIndex = 14;
@@ -191,7 +211,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Location = new System.Drawing.Point(64, 333);
+            this.pictureBox3.Location = new System.Drawing.Point(64, 309);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(206, 140);
             this.pictureBox3.TabIndex = 13;
@@ -200,7 +220,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 302);
+            this.label2.Location = new System.Drawing.Point(17, 278);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 16);
             this.label2.TabIndex = 12;
@@ -209,7 +229,7 @@
             // btnSaveAs
             // 
             this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAs.Location = new System.Drawing.Point(203, 236);
+            this.btnSaveAs.Location = new System.Drawing.Point(203, 222);
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(102, 42);
             this.btnSaveAs.TabIndex = 11;
@@ -256,7 +276,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 192);
+            this.label4.Location = new System.Drawing.Point(18, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 5;
@@ -274,7 +294,7 @@
             // btnCreateQRCode
             // 
             this.btnCreateQRCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateQRCode.Location = new System.Drawing.Point(20, 236);
+            this.btnCreateQRCode.Location = new System.Drawing.Point(20, 222);
             this.btnCreateQRCode.Name = "btnCreateQRCode";
             this.btnCreateQRCode.Size = new System.Drawing.Size(68, 42);
             this.btnCreateQRCode.TabIndex = 2;
@@ -295,7 +315,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(532, 518);
+            this.pictureBox1.Size = new System.Drawing.Size(532, 486);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
@@ -305,7 +325,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(881, 524);
+            this.tabPage2.Size = new System.Drawing.Size(881, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "解析 QR Code";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -318,8 +338,6 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.cmbAsm);
-            this.splitContainer2.Panel1.Controls.Add(this.label7);
             this.splitContainer2.Panel1.Controls.Add(this.btnPaste);
             this.splitContainer2.Panel1.Controls.Add(this.txbCotent2);
             this.splitContainer2.Panel1.Controls.Add(this.btnSelectFile);
@@ -327,14 +345,35 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.pictureBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(875, 518);
+            this.splitContainer2.Size = new System.Drawing.Size(875, 486);
             this.splitContainer2.SplitterDistance = 291;
             this.splitContainer2.TabIndex = 13;
+            // 
+            // cmbAsm
+            // 
+            this.cmbAsm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAsm.FormattingEnabled = true;
+            this.cmbAsm.Items.AddRange(new object[] {
+            "ZXing.Net",
+            "ThoughtWorks"});
+            this.cmbAsm.Location = new System.Drawing.Point(61, 4);
+            this.cmbAsm.Name = "cmbAsm";
+            this.cmbAsm.Size = new System.Drawing.Size(277, 24);
+            this.cmbAsm.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 16);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "程序";
             // 
             // btnPaste
             // 
             this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaste.Location = new System.Drawing.Point(142, 78);
+            this.btnPaste.Location = new System.Drawing.Point(140, 11);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(102, 42);
             this.btnPaste.TabIndex = 14;
@@ -344,16 +383,16 @@
             // 
             // txbCotent2
             // 
-            this.txbCotent2.Location = new System.Drawing.Point(5, 132);
+            this.txbCotent2.Location = new System.Drawing.Point(3, 65);
             this.txbCotent2.Multiline = true;
             this.txbCotent2.Name = "txbCotent2";
-            this.txbCotent2.Size = new System.Drawing.Size(283, 378);
+            this.txbCotent2.Size = new System.Drawing.Size(283, 351);
             this.txbCotent2.TabIndex = 13;
             // 
             // btnSelectFile
             // 
             this.btnSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectFile.Location = new System.Drawing.Point(11, 78);
+            this.btnSelectFile.Location = new System.Drawing.Point(9, 11);
             this.btnSelectFile.Name = "btnSelectFile";
             this.btnSelectFile.Size = new System.Drawing.Size(102, 42);
             this.btnSelectFile.TabIndex = 12;
@@ -366,47 +405,16 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(580, 518);
+            this.pictureBox2.Size = new System.Drawing.Size(580, 486);
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
-            // cmbAsm
-            // 
-            this.cmbAsm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAsm.FormattingEnabled = true;
-            this.cmbAsm.Items.AddRange(new object[] {
-            "ZXing.Net",
-            "ThoughtWorks"});
-            this.cmbAsm.Location = new System.Drawing.Point(11, 38);
-            this.cmbAsm.Name = "cmbAsm";
-            this.cmbAsm.Size = new System.Drawing.Size(277, 24);
-            this.cmbAsm.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 16);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "程序";
-            // 
             // txbQRCodeScale
             // 
-            this.txbQRCodeScale.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txbQRCodeScale.FormattingEnabled = true;
-            this.txbQRCodeScale.Location = new System.Drawing.Point(64, 185);
+            this.txbQRCodeScale.Location = new System.Drawing.Point(64, 186);
             this.txbQRCodeScale.Name = "txbQRCodeScale";
-            this.txbQRCodeScale.Size = new System.Drawing.Size(101, 24);
-            this.txbQRCodeScale.TabIndex = 18;
-            // 
-            // tslVer
-            // 
-            this.tslVer.AutoSize = false;
-            this.tslVer.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tslVer.Name = "tslVer";
-            this.tslVer.Size = new System.Drawing.Size(77, 17);
-            this.tslVer.Text = "1.2018.620.1";
+            this.txbQRCodeScale.Size = new System.Drawing.Size(101, 26);
+            this.txbQRCodeScale.TabIndex = 19;
             // 
             // Form1
             // 
@@ -414,6 +422,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 584);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -425,6 +434,8 @@
             this.Text = "QRCode 生成与解析";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -449,6 +460,9 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tslLog;
+        private System.Windows.Forms.ToolStripStatusLabel tslVer;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -470,15 +484,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ComboBox cmbAsm;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnPaste;
         private System.Windows.Forms.TextBox txbCotent2;
         private System.Windows.Forms.Button btnSelectFile;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ToolStripStatusLabel tslLog;
-        private System.Windows.Forms.ComboBox cmbAsm;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox txbQRCodeScale;
-        private System.Windows.Forms.ToolStripStatusLabel tslVer;
+        private System.Windows.Forms.TextBox txbQRCodeScale;
     }
 }
 
