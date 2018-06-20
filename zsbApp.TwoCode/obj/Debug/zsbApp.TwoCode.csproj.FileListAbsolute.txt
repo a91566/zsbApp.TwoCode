@@ -1,0 +1,13 @@
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zsbApp.TwoCode.exe.config
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zsbApp.TwoCode.exe
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zsbApp.TwoCode.pdb
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\System.ValueTuple.dll
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\ThoughtWorks.QRCode.dll
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\System.ValueTuple.xml
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csprojResolveAssemblyReference.cache
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.Form1.resources
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.Properties.Resources.resources
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csproj.GenerateResource.Cache
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csproj.CoreCompileInputs.cache
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.exe
+E:\Code\vs2017\201805+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.pdb
