@@ -20,6 +20,7 @@ namespace zsbApp.TwoCode
         /// <param name="qRCodeVersion">版本</param>
         /// <param name="qRCodeErrorCorrect">容错</param>
         /// <param name="logoFile">logo文件</param>
+        /// <param name="logoSize">logo大小</param>
         /// <returns></returns>
         public (string error, Bitmap qrcodeBitbmp) CreateQRCode(string content, int qRCodeScale, int qRCodeVersion, 
             QRCodeEncoder.ERROR_CORRECTION qRCodeErrorCorrect, string logoFile, int logoSize)
@@ -52,9 +53,31 @@ namespace zsbApp.TwoCode
         /// <summary>
         /// 解析二维码
         /// </summary>
+        /// <param name="file">文件绝对路径</param>
+        /// <returns></returns>
         public (string error, string content) DecodeQRCode(string file)
         {
             var bitmap = new Bitmap(file);
+            QRCodeDecoder qrDecoder = new QRCodeDecoder();
+            QRCodeImage qrImage = new QRCodeBitmapImage(bitmap);
+            try
+            {
+                string content = qrDecoder.decode(qrImage, Encoding.UTF8);
+                return (null, content);
+            }
+            catch (Exception ex)
+            {
+                return (ex.Message, null);
+            }
+        }
+
+        /// <summary>
+        /// 解析二维码
+        /// </summary>
+        /// <param name="file">文件绝对路径</param>
+        /// <returns></returns>
+        public (string error, string content) DecodeQRCode(Bitmap bitmap)
+        {
             QRCodeDecoder qrDecoder = new QRCodeDecoder();
             QRCodeImage qrImage = new QRCodeBitmapImage(bitmap);
             try
