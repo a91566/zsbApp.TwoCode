@@ -64,6 +64,10 @@ namespace zsbApp.TwoCode
             using (Bitmap bmp = new Bitmap(file))
             {
                 Result result = reader.Decode(bmp);
+                if (result == null)
+                {
+                    return ("未能识别", "");
+                }
                 return (null, result.Text);
             }
         }

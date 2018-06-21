@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslVer = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslLog = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.cmbAsm = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txbQRCodeScale = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
             this.txbLogoSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,13 +59,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.cmbAsm = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnDecode = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
             this.txbCotent2 = new System.Windows.Forms.TextBox();
             this.btnSelectFile = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txbQRCodeScale = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -107,6 +111,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.cmbAsm);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -114,6 +119,39 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(889, 32);
             this.panel1.TabIndex = 3;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(810, 8);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(72, 16);
+            this.linkLabel1.TabIndex = 17;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "QR码官网";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // cmbAsm
+            // 
+            this.cmbAsm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAsm.FormattingEnabled = true;
+            this.cmbAsm.Items.AddRange(new object[] {
+            "ZXing.Net",
+            "ThoughtWorks"});
+            this.cmbAsm.Location = new System.Drawing.Point(61, 4);
+            this.cmbAsm.Name = "cmbAsm";
+            this.cmbAsm.Size = new System.Drawing.Size(277, 24);
+            this.cmbAsm.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 16);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "程序";
             // 
             // tabControl1
             // 
@@ -170,6 +208,13 @@
             this.splitContainer1.SplitterDistance = 339;
             this.splitContainer1.TabIndex = 4;
             // 
+            // txbQRCodeScale
+            // 
+            this.txbQRCodeScale.Location = new System.Drawing.Point(64, 186);
+            this.txbQRCodeScale.Name = "txbQRCodeScale";
+            this.txbQRCodeScale.Size = new System.Drawing.Size(101, 26);
+            this.txbQRCodeScale.TabIndex = 19;
+            // 
             // btnCopy
             // 
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -213,7 +258,7 @@
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Location = new System.Drawing.Point(64, 309);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(206, 140);
+            this.pictureBox3.Size = new System.Drawing.Size(263, 140);
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
             // 
@@ -309,6 +354,7 @@
             this.txbContent.Name = "txbContent";
             this.txbContent.Size = new System.Drawing.Size(263, 122);
             this.txbContent.TabIndex = 1;
+            this.txbContent.TextChanged += new System.EventHandler(this.txbContent_TextChanged);
             // 
             // pictureBox1
             // 
@@ -338,6 +384,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.btnDecode);
             this.splitContainer2.Panel1.Controls.Add(this.btnPaste);
             this.splitContainer2.Panel1.Controls.Add(this.txbCotent2);
             this.splitContainer2.Panel1.Controls.Add(this.btnSelectFile);
@@ -349,26 +396,16 @@
             this.splitContainer2.SplitterDistance = 291;
             this.splitContainer2.TabIndex = 13;
             // 
-            // cmbAsm
+            // btnDecode
             // 
-            this.cmbAsm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAsm.FormattingEnabled = true;
-            this.cmbAsm.Items.AddRange(new object[] {
-            "ZXing.Net",
-            "ThoughtWorks"});
-            this.cmbAsm.Location = new System.Drawing.Point(61, 4);
-            this.cmbAsm.Name = "cmbAsm";
-            this.cmbAsm.Size = new System.Drawing.Size(277, 24);
-            this.cmbAsm.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 16);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "程序";
+            this.btnDecode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDecode.Location = new System.Drawing.Point(9, 331);
+            this.btnDecode.Name = "btnDecode";
+            this.btnDecode.Size = new System.Drawing.Size(102, 42);
+            this.btnDecode.TabIndex = 15;
+            this.btnDecode.Text = "监管解密";
+            this.btnDecode.UseVisualStyleBackColor = true;
+            this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
             // 
             // btnPaste
             // 
@@ -386,7 +423,7 @@
             this.txbCotent2.Location = new System.Drawing.Point(3, 65);
             this.txbCotent2.Multiline = true;
             this.txbCotent2.Name = "txbCotent2";
-            this.txbCotent2.Size = new System.Drawing.Size(283, 351);
+            this.txbCotent2.Size = new System.Drawing.Size(283, 260);
             this.txbCotent2.TabIndex = 13;
             // 
             // btnSelectFile
@@ -409,12 +446,10 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
-            // txbQRCodeScale
+            // timer1
             // 
-            this.txbQRCodeScale.Location = new System.Drawing.Point(64, 186);
-            this.txbQRCodeScale.Name = "txbQRCodeScale";
-            this.txbQRCodeScale.Size = new System.Drawing.Size(101, 26);
-            this.txbQRCodeScale.TabIndex = 19;
+            this.timer1.Interval = 3000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -427,8 +462,6 @@
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QRCode 生成与解析";
@@ -491,6 +524,9 @@
         private System.Windows.Forms.Button btnSelectFile;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txbQRCodeScale;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnDecode;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

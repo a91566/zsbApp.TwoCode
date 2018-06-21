@@ -2,7 +2,10 @@
  * 2018年6月19日 21:02:17 郑少宝 
  */
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using ThoughtWorks.QRCode.Codec;
 
@@ -24,7 +27,7 @@ namespace zsbApp.TwoCode
                 this.thHelper = new ThoughtWorksQRCodeHelper();
                 this.zxingHelper = new ZXingNetHelper();
                 this.cmbQRCodeErrorCorrect.SelectedIndex = 0;
-                this.cmbQRCodeVersion.SelectedIndex = 9;
+                this.cmbQRCodeVersion.SelectedIndex = 0;
                 this.txbQRCodeScale.Text = "4";
                 this.txbLogoSize.Text = "30";
                 this.initDrag();
@@ -52,7 +55,20 @@ namespace zsbApp.TwoCode
             (string error, Bitmap qrcodeBitbmp) result;
             if (this.cmbAsm.SelectedIndex == 0)
             {
-                result = this.zxingHelper.CreateQRCode(this.txbContent.Text, size, ver, ZXing.QrCode.Internal.ErrorCorrectionLevel.L, this._logo, logoSize);
+                var error = ZXing.QrCode.Internal.ErrorCorrectionLevel.L;
+                if (this.cmbQRCodeErrorCorrect.SelectedIndex == 1)
+                {
+                    error = ZXing.QrCode.Internal.ErrorCorrectionLevel.M;
+                }
+                else if (this.cmbQRCodeErrorCorrect.SelectedIndex == 2)
+                {
+                    error = ZXing.QrCode.Internal.ErrorCorrectionLevel.Q;
+                }
+                else if (this.cmbQRCodeErrorCorrect.SelectedIndex == 3)
+                {
+                    error = ZXing.QrCode.Internal.ErrorCorrectionLevel.H;
+                }
+                result = this.zxingHelper.CreateQRCode(this.txbContent.Text, size, ver, error, this._logo, logoSize);
             }
             else
             {
@@ -196,6 +212,8 @@ namespace zsbApp.TwoCode
         private void showlog(string text)
         {
             this.tslLog.Text = text;
+            if(!string.IsNullOrEmpty(text))
+                this.timer1.Enabled = true;
         }
 
         private void initDrag()
@@ -215,5 +233,93 @@ namespace zsbApp.TwoCode
             };
         }
 
+        private void txbContent_TextChanged(object sender, EventArgs e)
+        {
+            var c = System.Text.Encoding.Default.GetByteCount(this.txbContent.Text).ToString();
+            this.showlog(c.ToString());
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = false;
+            this.showlog("");
+        }
+
+        private void btnDecode_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txbCotent2.Text))
+            {
+                this.showlog("没有可解析的数据");
+                return;
+            }
+            string temp = this.txbCotent2.Text.Replace(@"http://j2w.tv:83?", "");
+            string content = null;
+            try
+            {
+                content = this.decrypt(temp, "b#s^$5.u", "5iG3-3&w");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("解密发生了异常：" + ex.Message);
+                return;
+            }
+            if (string.IsNullOrEmpty(content))
+            {
+                this.showlog("未能正确处理数据");
+                return;
+            }
+            var words = content.Split('|');
+            if (words.Length != 7 && words.Length != 8)
+            {
+                MessageBox.Show("数据可能错误：" + content);
+                return;
+            }
+            List<string> result = new List<string>();
+            result.Add($"机构代码:{words[0]}");
+            result.Add($"报告编号:{words[1]}");
+            result.Add($"检测结论:{words[2]}");
+            result.Add($"报告日期:{words[3]}");
+            result.Add($"标准编码:{words[4]}");
+            result.Add($"样品数量:{words[5]}");
+            result.Add($"工程名称:{words[6]}");
+            if(words.Length>7)
+                result.Add($"样品龄期:{words[7]}");
+            MessageBox.Show(string.Join(System.Environment.NewLine, result));
+        }
+
+        /// <summary>
+        /// 解密一个密文字符串(仅在特别需要时调用,一般直接调用缺省密钥的方法即可)
+        /// </summary>
+        /// <param name="data">待解密的密文串</param>
+        /// <param name="seckey">解密密钥(8字符64位)</param>
+        /// <param name="iv">偏移</param>
+        /// <returns>返回解密后的明文串</returns>
+        private string decrypt(string data, string seckey, string iv)
+        {
+            byte[] byKey = System.Text.ASCIIEncoding.ASCII.GetBytes(seckey);
+            byte[] by_IV = System.Text.ASCIIEncoding.ASCII.GetBytes(iv);
+
+            byte[] byEnc;
+            try
+            {
+                byEnc = Convert.FromBase64String(data);
+            }
+            catch
+            {
+                return null;
+            }
+            DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
+            MemoryStream ms = new MemoryStream(byEnc);
+            CryptoStream cst = new CryptoStream(ms,
+                cryptoProvider.CreateDecryptor(byKey, by_IV), CryptoStreamMode.Read);
+            StreamReader sr = new StreamReader(cst);
+            return sr.ReadToEnd();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("http://www.qrcode.com/en/");
+        }
     }
 }
