@@ -47,7 +47,7 @@ namespace zsbApp.TwoCode.Properties {
         }
         
         /// <summary>
-        ///   使用此强类型资源类，为所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -63,9 +63,9 @@ namespace zsbApp.TwoCode.Properties {
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Heart_love_72px_1096414_easyicon_net {
+        internal static System.Drawing.Icon barcode_scanner_48px_1135059_easyicon_net {
             get {
-                object obj = ResourceManager.GetObject("Heart_love_72px_1096414_easyicon_net", resourceCulture);
+                object obj = ResourceManager.GetObject("barcode_scanner_48px_1135059_easyicon_net", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

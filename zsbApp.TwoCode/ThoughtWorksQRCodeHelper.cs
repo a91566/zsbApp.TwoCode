@@ -28,7 +28,8 @@ namespace zsbApp.TwoCode
             QRCodeEncoder qrEncoder = new QRCodeEncoder();
             qrEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
             qrEncoder.QRCodeScale = qRCodeScale;
-            qrEncoder.QRCodeVersion = qRCodeVersion;
+            if(qRCodeVersion > 0)
+                qrEncoder.QRCodeVersion = qRCodeVersion;
             qrEncoder.QRCodeErrorCorrect = qRCodeErrorCorrect;
             try
             {

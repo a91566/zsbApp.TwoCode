@@ -16,10 +16,11 @@ namespace zsbApp.TwoCode
         public Form1()
         {
             InitializeComponent();
+            this.Icon = new System.Drawing.Icon(Properties.Resources.barcode_scanner_48px_1135059_easyicon_net,new Size(32, 32));
             this.Shown += (s, e) =>
             {
                 this.tslVer.Text = Application.ProductVersion;
-                for (int i = 1; i < 41; i++)
+                for (int i = 0; i < 41; i++)
                 {
                     this.cmbQRCodeVersion.Items.Add(i);
                 }

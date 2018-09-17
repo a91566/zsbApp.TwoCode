@@ -22,6 +22,9 @@ namespace zsbApp.TwoCode
         public (string error, Bitmap qrcodeBitbmp) CreateQRCode(string content, int qRCodeScale, int qRCodeVersion,
             ZXing.QrCode.Internal.ErrorCorrectionLevel qRCodeErrorCorrect, string logoFile, int logoSize)
         {
+            int? ver = null;
+            if (qRCodeVersion > 0)
+                ver = qRCodeVersion;
             BarcodeWriter writer = new BarcodeWriter();
             writer.Format = BarcodeFormat.QR_CODE;
             writer.Options = new ZXing.QrCode.QrCodeEncodingOptions() {
@@ -30,7 +33,7 @@ namespace zsbApp.TwoCode
                 Width = qRCodeScale,
                 Height = qRCodeScale,
                 ErrorCorrection = qRCodeErrorCorrect,
-                QrVersion = qRCodeVersion,
+                QrVersion = ver,
                 Margin = 0
             };
             try

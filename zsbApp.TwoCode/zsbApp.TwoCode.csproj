@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Heart_love_72px_1096414_easyicon.net.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\barcode_scanner_48px_1135059_easyicon.net.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -98,7 +98,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Heart_love_72px_1096414_easyicon.net.ico" />
+    <None Include="Resources\barcode_scanner_48px_1135059_easyicon.net.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,7 +17,6 @@ G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zsbApp.TwoCode.pdb
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\System.ValueTuple.dll
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\ThoughtWorks.QRCode.dll
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\System.ValueTuple.xml
-G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csprojResolveAssemblyReference.cache
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.Form1.resources
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.Properties.Resources.resources
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csproj.GenerateResource.cache
@@ -31,3 +30,4 @@ G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zxing.pdb
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zxing.xml
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zxing.presentation.pdb
 G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\bin\Debug\zxing.presentation.xml
+G:\zsb\code\201706+\zsbApp.TwoCode\zsbApp.TwoCode\obj\Debug\zsbApp.TwoCode.csprojAssemblyReference.cache
